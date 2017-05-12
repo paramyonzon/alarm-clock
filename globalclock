@@ -1,0 +1,32 @@
+from Tkinter import *
+import Tkinter
+import time
+
+
+
+def alarm():
+
+
+    userinput = raw_input("What's the secret password? ")
+
+    if userinput == ("Coolkids"):
+        print "alright dope sauce. u r in" 
+    
+    
+alarm()
+
+nowtime = ''
+clock = Tkinter.Label()
+clock.pack()
+
+def tick():
+    global nowtime
+    newtime = time.strftime('%H:%M:%S')
+
+    if newtime != nowtime: 
+        nowtime = newtime
+        clock.config(text=nowtime)
+    clock.after(200, tick)
+
+tick()
+clock.mainloop()
