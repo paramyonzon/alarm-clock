@@ -1,0 +1,39 @@
+from datetime import datetime
+import datetime
+# Start by introducing! 
+def Intro():
+    print "Hi Param! How are you doing today?"
+    answer = raw_input("Answer with 'Good', 'bad', or 'so/so?' " )
+    if answer == 'good' or 'Good' or 'good!' or 'Good!':
+        print "Great to hear! I'm so glad you're having a good day."
+    elif answer == 'bad':
+        print "Oh no... I'm sorry to hear that. Well some sleep will help you waiver it off"
+    elif answer == 'so/so':
+        print "Well... be grateful you are living :) You should get some rest"
+    else:
+        print "Looks like that's an answer that I don't usually get. Try again."
+        Intro() 
+
+Intro()
+
+#Let's display what day it is to them.
+tday = datetime.date.today()
+                                   
+def DayWeek():
+    if tday.weekday() == 0:
+        print 'Monday'
+    elif tday.weekday() == 1:
+        print 'Tuesday'
+    elif tday.weekday() == 2:
+        print 'Wednesday'
+    elif tday.weekday() == 3:
+        print 'Thursday'
+    elif tday.weekday() == 4:
+        print 'Friday'
+    elif tday.weekday() == 5:
+        print 'Saturday'
+    elif tday.weekday() == 6:
+        print 'Sunday'
+        
+print 'Today is '
+DayWeek()
