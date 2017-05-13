@@ -1,32 +1,14 @@
-from Tkinter import *
-import Tkinter
-import time
+#Find the Time of the day with AM/PM 
+ 
+now = datetime.datetime.now()
 
+currentHour = now.hour
+currentMin = now.minute
 
+def AMPM():
+    if currentHour >= 12:
+        print 'PM'
+    if currentHour < 12:
+        print 'AM'
 
-def alarm():
-
-
-    userinput = raw_input("What's the secret password? ")
-
-    if userinput == ("Coolkids"):
-        print "alright dope sauce. u r in" 
-    
-    
-alarm()
-
-nowtime = ''
-clock = Tkinter.Label()
-clock.pack()
-
-def tick():
-    global nowtime
-    newtime = time.strftime('%H:%M:%S')
-
-    if newtime != nowtime: 
-        nowtime = newtime
-        clock.config(text=nowtime)
-    clock.after(200, tick)
-
-tick()
-clock.mainloop()
+print "The time is", currentHour - 12,":", currentMin, AMPM()
