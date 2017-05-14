@@ -80,7 +80,38 @@ print "The time is", currentHour - 12,":", currentMin, AMPM()
 
 
 #Time to ask what time they would like
-AlarmAnswer = raw_input("What time would you like to wake up? ")
+def TimeAlarm():
+    print "Would you like to wake up in the AM or PM?"
 
-print "Awesome looks like you want to wake up at", AlarmAnswer
+    AMPMAnswer = raw_input("Answer with 'AM' or 'PM'. ")
 
+    if AMPMAnswer == "AM":
+        print "Awesome!"
+    elif AMPMAnswer == 'PM':
+        print 'Awesome!'
+
+Alarm_HH = input('What hour would you like to wake up: ')
+Alarm_MM = input('What minute would you like to wake up: ')
+
+def HourMinute():
+    print"You want to wake up at ", Alarm_HH, ":", Alarm_MM
+    HourMinute()
+    CorrectOrNah = raw_input('Is that correct? Answer with Yes or No ')
+    if CorrectOrNah == 'Yes':
+        print 'Cool!'
+    elif CorrectOrNah == 'No':
+        print "Let's try ths again"
+        TimeAlarm() 
+    else:
+        print "Try again"
+        HourMinute()
+
+
+AlarmAnswer = (Alarm_HH, ':' ,Alarm_MM)
+    
+
+def End():                                             
+    print "Awesome looks like you want to wake up at", AlarmAnswer
+    
+
+End()
