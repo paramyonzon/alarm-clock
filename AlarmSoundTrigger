@@ -1,0 +1,152 @@
+from datetime import datetime
+import datetime
+import time,winsound, os, platform
+import threading
+
+# Start by introducing! 
+def Intro():
+    answer = raw_input("Hi Param! How are you doing today? Answer with 'Good' or 'bad ' " )
+    if answer == 'good':
+        print "Great to hear! I'm so glad you're having a good day."
+    elif answer == 'bad':
+        print "Oh no... I'm sorry to hear that. Well some sleep will help you waiver it off"
+    else:
+        print "Looks like that's an answer that I don't usually get. Try again."
+        Intro() 
+Intro()
+
+#Let's display what day it is to them.
+
+tday = datetime.date.today()
+
+def month(): 
+    if tday.month == 1:
+        print 'January' 
+    if tday.month == 2:
+        print 'Feb'
+    if tday.month == 3:
+        print 'March'
+    if tday.month == 4:
+        print 'April'
+    if tday.month == 5:
+        print 'May'
+    if tday.month == 6:
+        print 'June'
+    if tday.month == 7:
+        print 'July'
+    if tday.month == 8:
+        print 'August'
+    if tday.month == 9:
+        print 'September'
+    if tday.month == 10:
+        print 'October'
+    if tday.month == 11:
+        print 'November'
+    if tday.month == 12:
+        print 'December'
+
+
+
+def DayWeek():
+    if tday.weekday() == 0:
+        print 'Today is Monday, the',tday.day, 'of', month()
+    elif tday.weekday() == 1:
+        print 'Today is Tuesday, the',tday.day, 'of', month()
+    elif tday.weekday() == 2:
+        print 'Today is Wednesday, the',tday.day, 'of', month()
+    elif tday.weekday() == 3:
+        print 'Today is Thursday, the',tday.day, 'of', month()
+    elif tday.weekday() == 4:
+        print 'Today is Friday, the',tday.day, 'of', month()
+    elif tday.weekday() == 5:
+        print 'Today is Saturday, the',tday.day, 'of', month()
+    elif tday.weekday() == 6:
+        print 'Today is Sunday, the',tday.day, 'of', month()
+        
+
+DayWeek()
+#Find the Time of the day with AM/PM 
+ 
+now = datetime.datetime.now()
+
+currentHour = now.hour
+currentMin = now.minute
+
+def AMPM():
+    if currentHour >= 12:
+        print 'PM'
+    if currentHour < 12:
+        print 'AM'
+
+print "The time is", currentHour - 12,":", currentMin, AMPM()
+
+
+#Time to ask what time they would like
+def TimeAlarm():
+    print "Would you like to wake up in the AM or PM?"
+
+    AMPMAnswer = raw_input("Answer with 'AM' or 'PM'. ")
+
+    if AMPMAnswer == "AM":
+        print "Awesome!"
+    elif AMPMAnswer == 'PM':
+        print 'Awesome!'
+
+Alarm_HH = input('What hour would you like to wake up: ')
+Alarm_MM = input('What minute would you like to wake up: ')
+
+def HourMinute():
+    print"You want to wake up at ", Alarm_HH, ":", Alarm_MM
+    CorrectOrNah = raw_input('Is that correct? Answer with Yes or No ')
+    if CorrectOrNah == 'Yes':
+        print 'Cool!'
+    elif CorrectOrNah == 'No':
+        print "Let's try ths again"
+        TimeAlarm() 
+    else:
+        print "Try again"
+        HourMinute()
+
+HourMinute()
+
+class Alarm(threading.Thread):
+    def __init__(self, hours, minutes):
+        super(Alarm, self).__init__()
+        self.hours = int(hours)
+        self.minutes = int(minutes)
+        self.keep_running = True
+
+    def run(self):
+        try:
+            while self.keep_running:
+                now = time.localtime()
+                if (now.tm_hour == self.hours and now.tm_min == self.minutes):
+                    print("ALARM NOW!")
+                    os.popen("voltage.mp3")
+                    return
+            time.sleep(60)
+        except:
+            return
+    def just_die(self):
+        self.keep_running = False
+
+print("You want to wake up at: {0:02}:{1:02}").format(Alarm_HH, Alarm_MM)
+
+
+alarm = Alarm(Alarm_HH, Alarm_MM)
+
+
+def sound():
+    for i in range(2): # Number of repeats
+        for j in range(9): # Number of beeps
+            winsound.MessageBeep(-1) # Sound played
+	   
+
+def alarm():
+    if currentHour == Alarm_HH and currentMin == Alarm_MM:
+        print "Time to get up"
+        time.sleep(n) # Waits 'n' seconds before playing sound
+
+    sound()
+
+alarm() 
